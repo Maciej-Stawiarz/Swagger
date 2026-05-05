@@ -5,11 +5,18 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ms</groupId>
-	<artifactId>swagger</artifactId>
+	<artifactId>Swagger</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
 		<java.version>25</java.version>
+		<encoding>UTF-8</encoding>
+
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+
+		<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+		<project.reporting.ouputEncoding>${encoding}</project.reporting.ouputEncoding>
 	</properties>
 
 
@@ -35,10 +42,19 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.46</version>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.33</version>
 		</dependency>
 
 		<dependency>

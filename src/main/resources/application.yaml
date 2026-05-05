@@ -1,3 +1,14 @@
 spring:
   application:
-    name: swagger
+    name: Swagger
+
+  datasource:
+    url: jdbc:mysql://localhost:5000/database
+    username: admin
+    password: admin
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

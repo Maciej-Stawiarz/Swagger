@@ -11,7 +11,7 @@ import lombok.Setter;
 
 import java.util.UUID;
 
-@Entity
+@Entity(name = "Cheese")
 @Getter
 @Setter
 @AllArgsConstructor
