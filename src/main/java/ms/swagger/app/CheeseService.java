@@ -27,6 +27,10 @@ public class CheeseService {
 	}
 	
 	public CheeseDto save(CheeseDto dto) {
+		if (dto.getUuid() != null) {
+			throw new IllegalArgumentException("New entities should not posses ids!");
+		}
+		
 		return CheeseMapper.toDto(
 				cheeseRepository.save(
 						CheeseMapper.toEntity(dto)));
@@ -34,7 +38,7 @@ public class CheeseService {
 	
 	public CheeseDto update(CheeseDto dto) {
 		if (!cheeseRepository.existsById(dto.getUuid())) {
-			throw new NotFoundException("Cheese not found: " + dto.getUuid());
+			throw new NotFoundException("Cheese: " + dto.getUuid() + " targeted by the update not found.");
 		}
 		
 		return CheeseMapper.toDto(
@@ -44,7 +48,7 @@ public class CheeseService {
 	
 	public void delete(UUID uuid) {
 		if (!cheeseRepository.existsById(uuid)) {
-			throw new NotFoundException("Cheese not found: " + uuid);
+			throw new NotFoundException("Cheese: " + uuid + " targeted by the delete not found.");
 		}
 		
 		cheeseRepository.deleteById(uuid);
