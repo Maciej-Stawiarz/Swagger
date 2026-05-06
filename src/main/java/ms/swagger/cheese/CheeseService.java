@@ -1,6 +1,8 @@
-package ms.swagger.app;
+package ms.swagger.cheese;
 
 import lombok.RequiredArgsConstructor;
+import ms.swagger.cheese.models.CheeseDto;
+import ms.swagger.cheese.utilities.CheeseMapper;
 import ms.swagger.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
 

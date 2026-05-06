@@ -1,6 +1,8 @@
-package ms.swagger.app;
+package ms.swagger.cheese.utilities;
 
 import lombok.NoArgsConstructor;
+import ms.swagger.cheese.models.CheeseDto;
+import ms.swagger.cheese.models.CheeseEntity;
 
 @NoArgsConstructor
 public final class CheeseMapper {
