@@ -1,6 +1,7 @@
-package ms.swagger.app;
+package ms.swagger.cheese;
 
 import lombok.RequiredArgsConstructor;
+import ms.swagger.cheese.models.CheeseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

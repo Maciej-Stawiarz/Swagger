@@ -1,4 +1,4 @@
-package ms.swagger.app;
+package ms.swagger.cheese.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
