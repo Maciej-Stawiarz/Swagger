@@ -1,0 +1,10 @@
+.idea
+.mvn
+target
+.dockerignore
+.gitattributes
+.gitignore
+docker-compose.yml
+Dockerfile
+mvnw
+mvnw.cmd
