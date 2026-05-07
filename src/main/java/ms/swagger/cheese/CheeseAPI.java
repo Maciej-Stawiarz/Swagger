@@ -35,10 +35,10 @@ public interface CheeseAPI {
 			@Parameter(name = "uuid", description = "UUID of the targeted Cheese") UUID uuid);
 	
 	
-	@Operation(summary = "Save a cheese in the database. DTO must NOT contain UUID")
+	@Operation(summary = "Save a cheese into the database. DTO must NOT contain UUID")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "201", description = "Cheese was added to the database"),
-			@ApiResponse(responseCode = "400", description = "Cheese contained UUID when saved")
+			@ApiResponse(responseCode = "400", description = "Cheese contained UUID when received")
 	})
 	@PostMapping
 	ResponseEntity<CheeseDto> save(
@@ -49,7 +49,8 @@ public interface CheeseAPI {
 	@Operation(summary = "Updates already existing Cheese in the database. Must contain UUID")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Cheese was updated successfully"),
-			@ApiResponse(responseCode = "404", description = "Cheese to be updated was not found in the database")
+			@ApiResponse(responseCode = "400", description = "Cheese received did not posses UUID"),
+			@ApiResponse(responseCode = "404", description = "Cheese with given UUID was not found in the database")
 	})
 	@PutMapping
 	ResponseEntity<CheeseDto> update(
@@ -57,12 +58,12 @@ public interface CheeseAPI {
 			@Parameter(name = "dto", description = "Entire structure of Cheese without UUID") CheeseDto dto);
 	
 	
-	@Operation(summary = "Removes cheese from the database. Must contain UUID")
+	@Operation(summary = "Removes cheese from the database. UUID must be present")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Cheese was deleted successfully"),
-			@ApiResponse(responseCode = "404", description = "Cheese to be deleted was not found in the database")
+			@ApiResponse(responseCode = "404", description = "Cheese with given UUID was not found in the database")
 	})
-	@DeleteMapping
+	@DeleteMapping("{uuid}")
 	ResponseEntity<Void> delete(
 			@PathVariable("uuid")
 			@Parameter(name = "uuid", description = "UUID of the targeted Cheese") UUID uuid);
