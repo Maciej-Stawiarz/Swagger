@@ -22,12 +22,20 @@ public class WineService {
 	}
 	
 	public WineDto get(UUID uuid) {
+		if (uuid == null) {
+			throw new IllegalArgumentException("Given UUID is null");
+		}
+		
 		return WineMapper.toDto(
 				wineRepository.findById(uuid)
 						.orElseThrow(() -> new NotFoundException("Wine not found: " + uuid)));
 	}
 	
 	public WineDto save(WineDto dto) {
+		if (dto == null) {
+			throw new IllegalArgumentException("New entities cannot be null!");
+		}
+		
 		if (dto.getUuid() != null) {
 			throw new IllegalArgumentException("New entities should not posses ids!");
 		}
@@ -38,6 +46,10 @@ public class WineService {
 	}
 	
 	public WineDto update(WineDto dto) {
+		if (dto == null) {
+			throw new IllegalArgumentException("New entities cannot be null!");
+		}
+		
 		if (dto.getUuid() == null) {
 			throw new IllegalArgumentException("UUID needs to be given to update existing entity.");
 		}
@@ -52,6 +64,10 @@ public class WineService {
 	}
 	
 	public void delete(UUID uuid) {
+		if (uuid == null) {
+			throw new IllegalArgumentException("Given UUID is null");
+		}
+		
 		if (!wineRepository.existsById(uuid)) {
 			throw new NotFoundException("Wine: " + uuid + " targeted by the delete was not found.");
 		}

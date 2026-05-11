@@ -21,6 +21,6 @@ public class WineMapper {
 				dto.getUuid(),
 				dto.getAge(),
 				dto.getName(),
-				dto.getName());
+				dto.getTaste());
 	}
 }

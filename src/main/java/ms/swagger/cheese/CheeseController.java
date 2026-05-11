@@ -18,13 +18,13 @@ public class CheeseController implements CheeseAPI {
 	public ResponseEntity<List<CheeseDto>> findAll() {
 		return new ResponseEntity<>(
 				cheeseService.findAll(),
-				HttpStatus.FOUND);
+				HttpStatus.OK);
 	}
 	
 	public ResponseEntity<CheeseDto> get(@PathVariable("uuid") UUID uuid) {
 		return new ResponseEntity<>(
 				cheeseService.get(uuid),
-				HttpStatus.FOUND);
+				HttpStatus.OK);
 	}
 	
 	public ResponseEntity<CheeseDto> save(@RequestBody CheeseDto dto) {

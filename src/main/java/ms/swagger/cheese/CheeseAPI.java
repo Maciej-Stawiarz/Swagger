@@ -18,7 +18,7 @@ public interface CheeseAPI {
 	
 	@Operation(summary = "Get a list of all cheeses")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "302", description = "Cheeses were found")
+			@ApiResponse(responseCode = "200", description = "Cheeses were found")
 	})
 	@GetMapping("all")
 	ResponseEntity<List<CheeseDto>> findAll();
@@ -26,7 +26,8 @@ public interface CheeseAPI {
 	
 	@Operation(summary = "Get a single cheese by UUID")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "302", description = "Cheese with given UUID was found"),
+			@ApiResponse(responseCode = "200", description = "Cheese with given UUID was found"),
+			@ApiResponse(responseCode = "400", description = "Given UUID was null"),
 			@ApiResponse(responseCode = "404", description = "Cheese with given UUID was NOT found")
 	})
 	@GetMapping("{uuid}")
@@ -38,6 +39,7 @@ public interface CheeseAPI {
 	@Operation(summary = "Save a cheese into the database. DTO must NOT contain UUID")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "201", description = "Cheese was added to the database"),
+			@ApiResponse(responseCode = "400", description = "Cheese data was empty"),
 			@ApiResponse(responseCode = "400", description = "Cheese contained UUID when received")
 	})
 	@PostMapping
@@ -49,6 +51,7 @@ public interface CheeseAPI {
 	@Operation(summary = "Updates already existing Cheese in the database. Must contain UUID")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Cheese was updated successfully"),
+			@ApiResponse(responseCode = "400", description = "Cheese data was empty"),
 			@ApiResponse(responseCode = "400", description = "Cheese received did not posses UUID"),
 			@ApiResponse(responseCode = "404", description = "Cheese with given UUID was not found in the database")
 	})
@@ -61,6 +64,7 @@ public interface CheeseAPI {
 	@Operation(summary = "Removes cheese from the database. UUID must be present")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Cheese was deleted successfully"),
+			@ApiResponse(responseCode = "400", description = "Given UUID was null"),
 			@ApiResponse(responseCode = "404", description = "Cheese with given UUID was not found in the database")
 	})
 	@DeleteMapping("{uuid}")
