@@ -19,14 +19,14 @@ public class WineController implements WineAPI {
 	public ResponseEntity<List<WineDto>> findAll() {
 		return new ResponseEntity<>(
 				wineService.findAll(),
-				HttpStatus.FOUND);
+				HttpStatus.OK);
 	}
 	
 	@Override
 	public ResponseEntity<WineDto> get(UUID uuid) {
 		return new ResponseEntity<>(
 				wineService.get(uuid),
-				HttpStatus.FOUND);
+				HttpStatus.OK);
 	}
 	
 	@Override

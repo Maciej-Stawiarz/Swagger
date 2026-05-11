@@ -18,7 +18,7 @@ public interface WineAPI {
 	
 	@Operation(summary = "Get a list of all wines")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "302", description = "Wines were found")
+			@ApiResponse(responseCode = "200", description = "Wines were found")
 	})
 	@GetMapping("all")
 	ResponseEntity<List<WineDto>> findAll();
@@ -26,7 +26,8 @@ public interface WineAPI {
 	
 	@Operation(summary = "Get a single wine by UUID")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "302", description = "Wine with given UUID was found"),
+			@ApiResponse(responseCode = "200", description = "Wine with given UUID was found"),
+			@ApiResponse(responseCode = "400", description = "Given UUID was null"),
 			@ApiResponse(responseCode = "404", description = "Wine with given UUID was NOT found")
 	})
 	@GetMapping("{uuid}")
@@ -38,6 +39,7 @@ public interface WineAPI {
 	@Operation(summary = "Save a wine into the database. DTO must NOT contain UUID")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "201", description = "Wine was added to the database"),
+			@ApiResponse(responseCode = "400", description = "Wine data was empty"),
 			@ApiResponse(responseCode = "400", description = "Wine contained UUID when received")
 	})
 	@PostMapping
@@ -49,6 +51,7 @@ public interface WineAPI {
 	@Operation(summary = "Updates already existing Wine in the database. Must contain UUID")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Wine was updated successfully"),
+			@ApiResponse(responseCode = "400", description = "Wine data was empty"),
 			@ApiResponse(responseCode = "400", description = "Wine received did not posses UUID"),
 			@ApiResponse(responseCode = "404", description = "Wine with given UUID was not found in the database")
 	})
@@ -61,6 +64,7 @@ public interface WineAPI {
 	@Operation(summary = "Removes wine from the database. UUID must be present")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Wine was deleted successfully"),
+			@ApiResponse(responseCode = "400", description = "Given UUID was null"),
 			@ApiResponse(responseCode = "404", description = "Wine with given UUID was not found in the database")
 	})
 	@DeleteMapping("{uuid}")
